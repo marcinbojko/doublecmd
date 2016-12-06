@@ -1,5 +1,4 @@
-﻿
-$ErrorActionPreference = 'Stop';
+﻿$ErrorActionPreference = 'Stop';
 
 $packageName        = 'doublecmd'
 $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
@@ -10,6 +9,7 @@ $url_remote64       = "https://dl.dropboxusercontent.com/u/6066664/choco/doublec
 $url_local_trans    = ""
 $url_remote_trans   = ""
 $url                = ""
+$url64              = ""
 $url_trans          = ""
 $checksum           = "d6a32e5a0cdb7cf2e2dbaf4a39c244b64f791030ec0dcf2f078ba78ddabd5d8c"
 $checksum64         = "783b33864cc179dbbbcf185741c674a33f72f84c737452fdc29fc153444df6f4"
@@ -21,15 +21,24 @@ $killexecprocess    = "doublecmd*"
 $statusCode = Test-Path $url_local
 if ($statusCode) {
                     $url=$url_local
+                    $url64=$url_local64
                     $url_trans=$url_local_trans
                 }
     else {
         $url=$url_remote
+        $url64=$url_remote64
         $url_trans=$url_remote_trans
     }
+
+
 # Someone has won ;)
 
-Start-Process -FilePath "C:\Program Files\Double Commander\unins000.exe" -ArgumentList "/SILENT"
+# Remove previous version
+$statusCode = Test-Path -Path "C:\Program Files\Double Commander\unins000.exe"
+    if ($statusCode) {
+        Start-Process -FilePath "C:\Program Files\Double Commander\unins000.exe" -ArgumentList "/SILENT" -ErrorAction silentlycontinue
+        Start-Sleep -s 30
+    }
 
 #Let's check your TEMP derectory
 
@@ -48,7 +57,7 @@ $packageArgs = @{
   silentArgs    = "/qn /passive /norestart ADDLOCAL=ALL"
   validExitCodes= @(0, 3010, 1603, 1641)
   url           = $url
-  url64bit      = $url_remote64
+  url64bit      = $url64
   checksumType  = 'sha256'
   checksumType64= 'sha256'
   checksum      = $checksum
@@ -59,7 +68,7 @@ $packageArgs = @{
 if ($killexec) {
   Stop-Process -processname $killexecprocess -force
   }
-
+  Start-Sleep -s 5
   Install-ChocolateyPackage @packageArgs
 
 

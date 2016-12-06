@@ -14,6 +14,10 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2016-12-06 Build 0.7.6 (b)
+
+* rebuild package with previous version uninstall
+
 ### 2016-12-01 Build 0.7.6
 
 * initial build
