@@ -2,17 +2,17 @@
 
 $packageName        = 'doublecmd'
 $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
-$url_local          = "http://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.7.6%20beta/doublecmd-0.7.6.i386-win32.msi?r=&ts=1480609172&use_mirror=netcologne"
-$url_remote         = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.6.i386-win32.msi"
-$url_local64        = "http://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.7.6%20beta/doublecmd-0.7.6.x86_64-win64.msi?r=&ts=1480609200&use_mirror=heanet"
-$url_remote64       = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.6.x86_64-win64.msi"
+$url_local          = "http://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.7.7%20beta/doublecmd-0.7.7.i386-win32.msi?r=&ts=1480609172&use_mirror=netcologne"
+$url_remote         = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.7.i386-win32.msi"
+$url_local64        = "http://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.7.7%20beta/doublecmd-0.7.7.x86_64-win64.msi?r=&ts=1480609200&use_mirror=heanet"
+$url_remote64       = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.7.x86_64-win64.msi"
 $url_local_trans    = ""
 $url_remote_trans   = ""
 $url                = ""
 $url64              = ""
 $url_trans          = ""
-$checksum           = "d6a32e5a0cdb7cf2e2dbaf4a39c244b64f791030ec0dcf2f078ba78ddabd5d8c"
-$checksum64         = "783b33864cc179dbbbcf185741c674a33f72f84c737452fdc29fc153444df6f4"
+$checksum           = "7bb23f53a053f7214ba365ed3bb0ad51b2b7472a4aa37c78c039b61923f7146b"
+$checksum64         = "8ad27a67e1ac72c53067421950050f305f270587d327cd38e7225dfef72c8917"
 $logfile            = "$env:TEMP\chocolatey\$($packageName)\$($packageName).MsiInstall.log"
 $logdir             = "$env:TEMP\chocolatey\$($packageName)"
 $killexec           = 1

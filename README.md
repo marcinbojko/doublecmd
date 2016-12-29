@@ -14,6 +14,12 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2016-12-29 Build 0.7.7
+
+* version 0.7.7
+* SHA256 - doublecmd-0.7.7.i386-win32.msi - 7bb23f53a053f7214ba365ed3bb0ad51b2b7472a4aa37c78c039b61923f7146b - [https://www.virustotal.com/en/file/7bb23f53a053f7214ba365ed3bb0ad51b2b7472a4aa37c78c039b61923f7146b/analysis/1483013311/](https://www.virustotal.com/en/file/7bb23f53a053f7214ba365ed3bb0ad51b2b7472a4aa37c78c039b61923f7146b/analysis/1483013311/)
+* SHA256 - doublecmd-0.7.7.x86_64-win64.msi - 8ad27a67e1ac72c53067421950050f305f270587d327cd38e7225dfef72c8917 - [https://www.virustotal.com/en/file/8ad27a67e1ac72c53067421950050f305f270587d327cd38e7225dfef72c8917/analysis/](https://www.virustotal.com/en/file/8ad27a67e1ac72c53067421950050f305f270587d327cd38e7225dfef72c8917/analysis/)
+
 ### 2016-12-06 Build 0.7.6 (b)
 
 * rebuild package with previous version uninstall
