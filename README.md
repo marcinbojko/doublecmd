@@ -14,6 +14,15 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2017-02-24 Build 0.7.8
+
+* version 0.7.8
+
+* SHA256 - doublecmd-0.7.8.x86_64-win64.msi - 0e96bf489ac0622cd095247909036229782ffb08e3dc146fbcef5e845837615a [https://www.virustotal.com/pl/file/0e96bf489ac0622cd095247909036229782ffb08e3dc146fbcef5e845837615a/analysis/1487956082/](https://www.virustotal.com/pl/file/0e96bf489ac0622cd095247909036229782ffb08e3dc146fbcef5e845837615a/analysis/1487956082/)
+* SHA256 - doublecmd-0.7.8.i386-win32.msi - 39dadffce533c34432d81b701ff6b057ccc4cef0f9d705cb975c387436e806a2 [https://www.virustotal.com/pl/file/39dadffce533c34432d81b701ff6b057ccc4cef0f9d705cb975c387436e806a2/analysis/1487956341/](https://www.virustotal.com/pl/file/39dadffce533c34432d81b701ff6b057ccc4cef0f9d705cb975c387436e806a2/analysis/1487956341/)
+* removed passive MSI install install option
+* added uninstaller for 32-bit EXE installs
+
 ### 2016-12-29 Build 0.7.7
 
 * version 0.7.7

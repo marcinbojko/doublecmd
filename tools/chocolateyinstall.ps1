@@ -2,17 +2,17 @@
 
 $packageName        = 'doublecmd'
 $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
-$url_local          = "http://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.7.7%20beta/doublecmd-0.7.7.i386-win32.msi?r=&ts=1480609172&use_mirror=netcologne"
-$url_remote         = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.7.i386-win32.msi"
-$url_local64        = "http://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.7.7%20beta/doublecmd-0.7.7.x86_64-win64.msi?r=&ts=1480609200&use_mirror=heanet"
-$url_remote64       = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.7.x86_64-win64.msi"
+$url_local          = "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.7.8%20beta/doublecmd-0.7.8.i386-win32.msi"
+$url_remote         = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.8.i386-win32.msi"
+$url_local64        = "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.7.8%20beta/doublecmd-0.7.8.x86_64-win64.msi"
+$url_remote64       = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.8.x86_64-win64.msi"
 $url_local_trans    = ""
 $url_remote_trans   = ""
 $url                = ""
 $url64              = ""
 $url_trans          = ""
-$checksum           = "7bb23f53a053f7214ba365ed3bb0ad51b2b7472a4aa37c78c039b61923f7146b"
-$checksum64         = "8ad27a67e1ac72c53067421950050f305f270587d327cd38e7225dfef72c8917"
+$checksum           = "39dadffce533c34432d81b701ff6b057ccc4cef0f9d705cb975c387436e806a2"
+$checksum64         = "0e96bf489ac0622cd095247909036229782ffb08e3dc146fbcef5e845837615a"
 $logfile            = "$env:TEMP\chocolatey\$($packageName)\$($packageName).MsiInstall.log"
 $logdir             = "$env:TEMP\chocolatey\$($packageName)"
 $killexec           = 1
@@ -37,7 +37,14 @@ if ($statusCode) {
 $statusCode = Test-Path -Path "C:\Program Files\Double Commander\unins000.exe"
     if ($statusCode) {
         Start-Process -FilePath "C:\Program Files\Double Commander\unins000.exe" -ArgumentList "/SILENT" -ErrorAction silentlycontinue
-        Start-Sleep -s 30
+        Start-Sleep -s 60
+    }
+
+# Remove previous version (32-bit)
+$statusCode = Test-Path -Path "C:\Program Files (x86)\Double Commander\unins000.exe"
+    if ($statusCode) {
+        Start-Process -FilePath "C:\Program Files (x86)\Double Commander\unins000.exe" -ArgumentList "/SILENT" -ErrorAction silentlycontinue
+        Start-Sleep -s 60
     }
 
 #Let's check your TEMP derectory
@@ -54,7 +61,7 @@ if ($statusCode) {
 $packageArgs = @{
   packageName   = $packageName
   fileType      = 'msi'
-  silentArgs    = "/qn /passive /norestart ADDLOCAL=ALL"
+  silentArgs    = "/qn /norestart ADDLOCAL=ALL"
   validExitCodes= @(0, 3010, 1603, 1641)
   url           = $url
   url64bit      = $url64
@@ -68,7 +75,7 @@ $packageArgs = @{
 if ($killexec) {
   Stop-Process -processname $killexecprocess -force
   }
-  Start-Sleep -s 5
+  Start-Sleep -s 10
   Install-ChocolateyPackage @packageArgs
 
 
