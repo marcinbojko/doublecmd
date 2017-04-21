@@ -3,9 +3,9 @@
 $packageName        = 'doublecmd'
 $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
 $url_local          = "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.7.8%20beta/doublecmd-0.7.8.i386-win32.msi"
-$url_remote         = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.8.i386-win32.msi"
+$url_remote         = "https://netcologne.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.7.8%20beta/doublecmd-0.7.8.i386-win32.msi"
 $url_local64        = "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.7.8%20beta/doublecmd-0.7.8.x86_64-win64.msi"
-$url_remote64       = "https://dl.dropboxusercontent.com/u/6066664/choco/doublecmd/doublecmd-0.7.8.x86_64-win64.msi"
+$url_remote64       = "https://netcologne.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.7.8%20beta/doublecmd-0.7.8.x86_64-win64.msi"
 $url_local_trans    = ""
 $url_remote_trans   = ""
 $url                = ""
