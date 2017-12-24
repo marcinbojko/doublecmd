@@ -13,6 +13,12 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2017-12-24 Build 0.8.1
+
+* version 0.8.1
+* SHA256 - doublecmd-0.8.1.i386-win32.msi - [https://www.virustotal.com/#/file/51182e8870b1105407bfce290044cb5b14c213752de06254a229ea15632c59f3/detection](https://www.virustotal.com/#/file/51182e8870b1105407bfce290044cb5b14c213752de06254a229ea15632c59f3/detection)
+* SHA256 - doublecmd-0.8.1.x86_64-win64.msi - [https://www.virustotal.com/#/file/37c7e6f0029e026125359064d4a1fea8037e9fe728454e89594d8550969cfb67/detection](https://www.virustotal.com/#/file/37c7e6f0029e026125359064d4a1fea8037e9fe728454e89594d8550969cfb67/detection)
+
 ### 2017-12-11 Build 0.8.0
 
 * version 0.8.0

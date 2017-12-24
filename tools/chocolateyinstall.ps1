@@ -2,17 +2,17 @@
 
 $packageName        = 'doublecmd'
 $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
-$url_local          = "https://netcologne.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.0%20beta/doublecmd-0.8.0.i386-win32.msi"
-$url_remote         = "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.0%20beta/doublecmd-0.8.0.i386-win32.msi"
-$url_local64        = "https://netcologne.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.0%20beta/doublecmd-0.8.0.x86_64-win64.msi"
-$url_remote64       = "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.0%20beta/doublecmd-0.8.0.x86_64-win64.msi"
+$url_local          = "https://iweb.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.1%20beta/doublecmd-0.8.1.i386-win32.msi"
+$url_remote         = "https://netix.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.1%20beta/doublecmd-0.8.1.i386-win32.msi"
+$url_local64        = "https://netcologne.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.1%20beta/doublecmd-0.8.1.x86_64-win64.msi"
+$url_remote64       = "https://netix.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.1%20beta/doublecmd-0.8.1.x86_64-win64.msi"
 $url_local_trans    = ""
 $url_remote_trans   = ""
 $url                = ""
 $url64              = ""
 $url_trans          = ""
-$checksum           = "c05a7baa5df2234ee0a52ef89a551dbd68c3299357e3ec586a53fc92f6f89288"
-$checksum64         = "344bcdc4bc7d64a2528a46013ad65886650e5f0f526d030c6602e8b0467944c9"
+$checksum           = "51182e8870b1105407bfce290044cb5b14c213752de06254a229ea15632c59f3"
+$checksum64         = "37c7e6f0029e026125359064d4a1fea8037e9fe728454e89594d8550969cfb67"
 $logfile            = "$env:TEMP\chocolatey\$($packageName)\$($packageName).MsiInstall.log"
 $logdir             = "$env:TEMP\chocolatey\$($packageName)"
 $killexec           = 1
