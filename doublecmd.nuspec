@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>doublecmd</id>
     <title>Double Commander for Windows</title>
-    <version>0.8.1</version>
+    <version>0.8.2</version>
     <authors>Alexander Koblov, Przemyslaw Nagay</authors>
     <owners>anydot, Marcin Bojko</owners>
     <summary>Double Commander is a cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.</summary>
@@ -24,6 +24,12 @@ See Double Commander in action in the Gallery.
 * Supports 32/64-bit version
 
 ## Changelog
+
+### 2018-02-23 Build 0.8.2
+* version 0.8.2 - https://doublecmd.sourceforge.io/mantisbt/changelog_page.php?version_id=52
+* SHA256 - doublecmd-0.8.1.i386-win32.msi - [https://www.virustotal.com/#/file/81a218add7695015e3c2095276ff4674ecdae0c29939c6f8133e8a0c320793f5/detection](https://www.virustotal.com/#/file/81a218add7695015e3c2095276ff4674ecdae0c29939c6f8133e8a0c320793f5/detection)
+* SHA256 - doublecmd-0.8.1.x86_64-win64.msi - [https://www.virustotal.com/#/file/b81c2921681c4a571c9ad0883406efad320a3c98da7d48eccae077a92ceb3291/detection](https://www.virustotal.com/#/file/b81c2921681c4a571c9ad0883406efad320a3c98da7d48eccae077a92ceb3291/detection)
+* removed doubled urls (local/remote)
 
 ### 2017-12-24 Build 0.8.1
 
@@ -92,5 +98,6 @@ doublecmd:
   </metadata>
     <files>
       <file src="tools\**" target="tools" />
+      <file src="icons\**" target="icons" />
     </files>
 </package>

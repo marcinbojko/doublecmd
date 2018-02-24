@@ -13,6 +13,12 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2018-02-23 Build 0.8.2
+* version 0.8.2 - https://doublecmd.sourceforge.io/mantisbt/changelog_page.php?version_id=52
+* SHA256 - doublecmd-0.8.1.i386-win32.msi - [https://www.virustotal.com/#/file/81a218add7695015e3c2095276ff4674ecdae0c29939c6f8133e8a0c320793f5/detection](https://www.virustotal.com/#/file/81a218add7695015e3c2095276ff4674ecdae0c29939c6f8133e8a0c320793f5/detection)
+* SHA256 - doublecmd-0.8.1.x86_64-win64.msi - [https://www.virustotal.com/#/file/b81c2921681c4a571c9ad0883406efad320a3c98da7d48eccae077a92ceb3291/detection](https://www.virustotal.com/#/file/b81c2921681c4a571c9ad0883406efad320a3c98da7d48eccae077a92ceb3291/detection)
+* removed doubled urls (local/remote)
+
 ### 2017-12-24 Build 0.8.1
 
 * version 0.8.1
