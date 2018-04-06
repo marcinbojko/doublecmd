@@ -2,8 +2,8 @@
 
 $packageName        = 'doublecmd'
 $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
-$url                = "https://10gbps-io.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.2%20beta/doublecmd-0.8.2.i386-win32.msi"
-$url64              = "https://10gbps-io.dl.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.2%20beta/doublecmd-0.8.2.x86_64-win64.msi"
+$url                = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.2%20beta/doublecmd-0.8.2.i386-win32.msi/download?use_mirror=autoselect"
+$url64              = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.2%20beta/doublecmd-0.8.2.x86_64-win64.msi/download?use_mirror=autoselect"
 $checksum           = "81a218add7695015e3c2095276ff4674ecdae0c29939c6f8133e8a0c320793f5"
 $checksum64         = "b81c2921681c4a571c9ad0883406efad320a3c98da7d48eccae077a92ceb3291"
 $logfile            = "$env:TEMP\chocolatey\$($packageName)\$($packageName).MsiInstall.log"
