@@ -1,24 +1,24 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $packageName        = 'doublecmd'
-$scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
-$url                = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.2%20beta/doublecmd-0.8.2.i386-win32.msi/download?use_mirror=autoselect"
-$url64              = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.2%20beta/doublecmd-0.8.2.x86_64-win64.msi/download?use_mirror=autoselect"
-$checksum           = "81a218add7695015e3c2095276ff4674ecdae0c29939c6f8133e8a0c320793f5"
-$checksum64         = "b81c2921681c4a571c9ad0883406efad320a3c98da7d48eccae077a92ceb3291"
+# $scriptPath         = $(Split-Path $MyInvocation.MyCommand.Path)
+$url                = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2032%20bit/Double%20Commander%200.8.3%20beta/doublecmd-0.8.3.i386-win32.msi/download?use_mirror=autoselect"
+$url64              = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2064%20bit/Double%20Commander%200.8.3%20beta/doublecmd-0.8.3.x86_64-win64.msi/download?use_mirror=autoselect"
+$checksum           = "ebb59e339fd098951faf7652743e3129d1897f84b4eeda7b1f74956e841ca6b7"
+$checksum64         = "890a370724bc5871619247590dc9bac9ec1d300cb361e404a9fab07abf21e339"
 $logfile            = "$env:TEMP\chocolatey\$($packageName)\$($packageName).MsiInstall.log"
 $logdir             = "$env:TEMP\chocolatey\$($packageName)"
 $killexec           = 1
 $killexecprocess    = "doublecmd*"
 
-# Remove previous version
+# Remove previous version installed as exe (if exist)
     $statusCode = Test-Path -Path "C:\Program Files\Double Commander\unins000.exe"
     if ($statusCode) {
         Start-Process -FilePath "C:\Program Files\Double Commander\unins000.exe" -ArgumentList "/SILENT" -ErrorAction silentlycontinue
         Start-Sleep -s 60
     }
 
-# Remove previous version (32-bit)
+# Remove previous version (32-bit) installed as exe (if exist)
     $statusCode = Test-Path -Path "C:\Program Files (x86)\Double Commander\unins000.exe"
     if ($statusCode) {
         Start-Process -FilePath "C:\Program Files (x86)\Double Commander\unins000.exe" -ArgumentList "/SILENT" -ErrorAction silentlycontinue
