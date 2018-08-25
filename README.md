@@ -13,6 +13,12 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2018-08-25 Build 0.8.4
+
+* version 0.8.4
+* 64-bit version - [https://www.virustotal.com/#/file/30303a3ea3697b3ef77a2d6cfab7080a56f2c26645cba816f5103618bc241e67/detection](https://www.virustotal.com/#/file/30303a3ea3697b3ef77a2d6cfab7080a56f2c26645cba816f5103618bc241e67/detection)
+* 32-bit version - [https://www.virustotal.com/#/file/448ebdeb3204337ad3e5caa4481ad273d2000183501192923be8f5a898aa2d8f/detection](https://www.virustotal.com/#/file/448ebdeb3204337ad3e5caa4481ad273d2000183501192923be8f5a898aa2d8f/detection)
+
 ### 2018-06-30 Build 0.8.3
 
 * version 0.8.3
@@ -58,7 +64,7 @@ See Double Commander in action in the Gallery.
 ### Direct
 
 ```cmd
-choco install doublecmd
+choco install doublecmd -y
 ```
 
 ### YAML (Foreman, puppetlabs/chocolatey module)
