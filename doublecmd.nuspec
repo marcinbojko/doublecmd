@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>doublecmd</id>
     <title>Double Commander for Windows</title>
-    <version>0.9.0</version>
+    <version>0.9.0.20190213</version>
     <authors>Alexander Koblov, Przemyslaw Nagay</authors>
     <owners>anydot, Marcin Bojko</owners>
     <summary>Double Commander is a cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.</summary>
@@ -24,6 +24,13 @@ See Double Commander in action in the Gallery.
 * Supports 32/64-bit version
 
 ## Changelog
+
+### 2019-02-12 Build 0.9.0.20190213
+
+* version 0.9.0
+* files has been rebuild at SourceForge
+* 64-bit version - [https://www.virustotal.com/#/file/eee9cec18f5e4db521f51338813473de572728449f8cf0d84590290bb6a4614a/detection](https://www.virustotal.com/#/file/eee9cec18f5e4db521f51338813473de572728449f8cf0d84590290bb6a4614a/detection)
+* 32-bit version - [https://www.virustotal.com/#/file/d67ec2866d5fa6817aa1945690aeb490f3ae64db314f54294f1d3c9968dbb93f/detection](https://www.virustotal.com/#/file/d67ec2866d5fa6817aa1945690aeb490f3ae64db314f54294f1d3c9968dbb93f/detection)
 
 ### 2019-02-10 Build 0.9.0
 
