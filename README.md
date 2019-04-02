@@ -13,6 +13,12 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2019-04-02 Build 0.9.2
+
+* version 0.9.2
+* 64-bit version - [https://www.virustotal.com/#/file/85c576128f43de7dc48f88efa403cf7a4c3b30d26913eaf55ad4d1735ea90187/detection](https://www.virustotal.com/#/file/85c576128f43de7dc48f88efa403cf7a4c3b30d26913eaf55ad4d1735ea90187/detection)
+* 32-bit version - [https://www.virustotal.com/#/file/cb5c83d2f5b889432b724f405f187f2d4d4e4d2722ba67f8a538ce11d19f8593/detection](https://www.virustotal.com/#/file/cb5c83d2f5b889432b724f405f187f2d4d4e4d2722ba67f8a538ce11d19f8593/detection)
+
 ### 2019-02-17 Build 0.9.1
 
 * version 0.9.1
