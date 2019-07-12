@@ -13,6 +13,10 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+### 2019-07-12 Build 0.9.5
+
+* version 0.9.5
+
 ### 2019-05-22 Build 0.9.3
 
 * version 0.9.3
