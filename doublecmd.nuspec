@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>doublecmd</id>
     <title>Double Commander for Windows</title>
-    <version>0.9.5</version>
+    <version>0.9.6</version>
     <authors>Alexander Koblov, Przemyslaw Nagay</authors>
     <owners>anydot, Marcin Bojko</owners>
     <summary>Double Commander is a cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.</summary>
@@ -24,6 +24,10 @@ See Double Commander in action in the Gallery.
 * Supports 32/64-bit version
 
 ## Changelog
+
+### 2019-09-01 Build 0.9.6
+
+* version 0.9.6
 
 ### 2019-07-12 Build 0.9.5
 
@@ -87,7 +91,7 @@ doublecmd:
     <projectUrl>http://doublecmd.sourceforge.net/</projectUrl>
     <packageSourceUrl>https://github.com/marcinbojko/doublecmd</packageSourceUrl>
     <docsUrl>http://doublecmd.sourceforge.net/forum/</docsUrl>
-    <iconUrl>https://raw.githubusercontent.com/marcinbojko/doublecmd/master/icons/doublecmd.png</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/marcinbojko/doublecmd/abe1fdc254972b06b049fdf6415d14b6db241bd1/icons/doublecmd.png</iconUrl>
     <projectSourceUrl>https://sourceforge.net/p/doublecmd/code/HEAD/tree/trunk/</projectSourceUrl>
     <!--<projectSourceUrl></projectSourceUrl>
     <mailingListUrl></mailingListUrl>-->
@@ -102,6 +106,5 @@ doublecmd:
   </metadata>
     <files>
       <file src="tools\**" target="tools" />
-      <file src="icons\**" target="icons" />
     </files>
 </package>
