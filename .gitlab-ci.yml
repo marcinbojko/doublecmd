@@ -1,0 +1,47 @@
+stages:
+  - choco_build
+choco_build_test:
+  stage: choco_build
+  before_script:
+    - $env:Path += ";C:\Program Files\dotnet"
+    - Write-Output $env:Path
+  script:
+    - cpack
+    - ls
+    - $file=(get-childitem -Path . -Name *.nupkg)
+    - choco apikey --key "$MYGET_API_KEY" --source https://www.myget.org/F/public-choco-dev/api/v2/package
+    - choco push $file --source https://www.myget.org/F/public-choco-dev/api/v2/package
+  tags:
+    - windows
+    - shared
+    - choco
+  only:
+    refs:
+    - test
+    - trigger
+    changes:
+     - "*"
+     - "**/*"
+
+choco_build_prod:
+  stage: choco_build
+  before_script:
+    - $env:Path += ";C:\Program Files\dotnet"
+    - Write-Output $env:Path
+  script:
+    - cpack
+    - ls
+    - $file=(get-childitem -Path . -Name *.nupkg)
+    - choco apikey --key "$CHOCO_API_KEY" --source https://push.chocolatey.org/
+    - choco push $file --source https://push.chocolatey.org/ -v
+  tags:
+    - windows
+    - shared
+    - choco
+  only:
+    refs:
+    - master
+    - trigger
+    changes:
+     - "*"
+     - "**/*"

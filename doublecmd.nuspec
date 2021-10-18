@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>doublecmd</id>
     <title>Double Commander for Windows</title>
-    <version>0.9.10</version>
+    <version>1.0.0</version>
     <authors>Alexander Koblov, Przemyslaw Nagay</authors>
     <owners>anydot, Marcin Bojko</owners>
     <summary>Double Commander is a cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.</summary>
@@ -25,72 +25,21 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
-### 2021-01-10 Build 0.9.10
+### 2021-10-18 Build 1.0.0
 
-* version 0.9.10
-
-### 2020-06-29 Build 0.9.9
-
-* version 0.9.9
-
-### 2020-02-01 Build 0.9.8
-
-* version 0.9.8
-
-### 2020-01-09 Build 0.9.7
-
-* version 0.9.7
-
-### 2019-09-01 Build 0.9.6
-
-* version 0.9.6
-
-### 2019-07-12 Build 0.9.5
-
-* version 0.9.5
-
-### 2019-05-22 Build 0.9.3
-
-* version 0.9.3
-* 32-bit version - [https://www.virustotal.com/#/file/73b76a437fc95578d3f2428932446bc5bf91b751ba134717daefff6bc8386958/detection](https://www.virustotal.com/#/file/73b76a437fc95578d3f2428932446bc5bf91b751ba134717daefff6bc8386958/detection)
-* 64-bit version - [https://www.virustotal.com/#/file/53688829d75eeab595842b0dd721d8bd331e81096fa8caf2f5e39ffac41fe283/detection](https://www.virustotal.com/#/file/53688829d75eeab595842b0dd721d8bd331e81096fa8caf2f5e39ffac41fe283/detection)
-
-### 2019-04-02 Build 0.9.2
-
-* version 0.9.2
-* 64-bit version - [https://www.virustotal.com/#/file/85c576128f43de7dc48f88efa403cf7a4c3b30d26913eaf55ad4d1735ea90187/detection](https://www.virustotal.com/#/file/85c576128f43de7dc48f88efa403cf7a4c3b30d26913eaf55ad4d1735ea90187/detection)
-* 32-bit version - [https://www.virustotal.com/#/file/cb5c83d2f5b889432b724f405f187f2d4d4e4d2722ba67f8a538ce11d19f8593/detection](https://www.virustotal.com/#/file/cb5c83d2f5b889432b724f405f187f2d4d4e4d2722ba67f8a538ce11d19f8593/detection)
-
-### 2019-02-17 Build 0.9.1
-
-* version 0.9.1
-* 64-bit version - [https://www.virustotal.com/#/file/6deb97cee6ae674bf54658e6126584e02078ed3ef56eb98d244d936e17dcaab1/detection](https://www.virustotal.com/#/file/6deb97cee6ae674bf54658e6126584e02078ed3ef56eb98d244d936e17dcaab1/detection)
-* 32-bit version - [https://www.virustotal.com/#/file/8a17e3f492f926de61b5244dd5c76c099b4b962b03a2e510d61a21ca950c7824/detection](https://www.virustotal.com/#/file/8a17e3f492f926de61b5244dd5c76c099b4b962b03a2e510d61a21ca950c7824/detection)
-
-### 2019-02-12 Build 0.9.0.20190213
-
-* version 0.9.0
-* files has been rebuild at SourceForge
-* 64-bit version - [https://www.virustotal.com/#/file/eee9cec18f5e4db521f51338813473de572728449f8cf0d84590290bb6a4614a/detection](https://www.virustotal.com/#/file/eee9cec18f5e4db521f51338813473de572728449f8cf0d84590290bb6a4614a/detection)
-* 32-bit version - [https://www.virustotal.com/#/file/d67ec2866d5fa6817aa1945690aeb490f3ae64db314f54294f1d3c9968dbb93f/detection](https://www.virustotal.com/#/file/d67ec2866d5fa6817aa1945690aeb490f3ae64db314f54294f1d3c9968dbb93f/detection)
-
-### 2019-02-10 Build 0.9.0
-
-* version 0.9.0
-* 64-bit version - [https://www.virustotal.com/#/file/9a30893bfce315909fa1fa747fc68b67c022fda3a5e00512dfab2007c96a01ce/detection](https://www.virustotal.com/#/file/9a30893bfce315909fa1fa747fc68b67c022fda3a5e00512dfab2007c96a01ce/detection)
-* 32-bit version - [https://www.virustotal.com/#/file/85cb3a73691f2e5c15bf48571587271b78cfb73f97034b3c3fab5c3abceb5100/detection](https://www.virustotal.com/#/file/85cb3a73691f2e5c15bf48571587271b78cfb73f97034b3c3fab5c3abceb5100/detection)
+* version 1.0.0
 
 ## Usage
 
 ### Direct
 
-```
+```cmd
 choco install doublecmd -y
 ```
 
 ### YAML (Foreman, puppetlabs/chocolatey module)
 
-```
+```yaml
 doublecmd:
   ensure: latest
   provider: chocolatey
@@ -98,11 +47,10 @@ doublecmd:
 
 or
 
-```
+```yaml
 doublecmd:
   ensure: latest
 ```
-
     </description>
     <projectUrl>http://doublecmd.sourceforge.net/</projectUrl>
     <packageSourceUrl>https://github.com/marcinbojko/doublecmd</packageSourceUrl>
