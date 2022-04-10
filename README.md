@@ -13,9 +13,14 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+## 2022-04-10 Build 1.0.5
+
+* version 1.0.5
+
 ## 2022-02-10 Build 1.0.4
 
 * version 1.0.4
+
 ## 2022-01-09 Build 1.0.3
 
 * version 1.0.3
