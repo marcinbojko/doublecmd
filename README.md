@@ -13,6 +13,11 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+## 2022-06-05 Build 1.0.6
+
+* version 1.0.6
+* added more test for github actions (multiple Windows OS'es)
+
 ## 2022-04-10 Build 1.0.5
 
 * version 1.0.5

@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>doublecmd</id>
     <title>Double Commander for Windows</title>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <authors>Alexander Koblov, Przemyslaw Nagay</authors>
     <owners>anydot, Marcin Bojko</owners>
     <summary>Double Commander is a cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.</summary>
@@ -25,29 +25,7 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
-## 2022-04-10 Build 1.0.5
-
-* version 1.0.5
-
-## 2022-02-10 Build 1.0.4
-
-* version 1.0.4
-
-## 2022-01-09 Build 1.0.3
-
-* version 1.0.3
-
-### 2021-12-11 Build 1.0.2
-
-* version 1.0.2
-
-### 2021-11-02 Build 1.0.1
-
-* version 1.0.1
-
-### 2021-10-18 Build 1.0.0
-
-* version 1.0.0
+[https://github.com/marcinbojko/doublecmd/blob/master/README.md](https://github.com/marcinbojko/doublecmd/blob/master/README.md)
 
 ## Usage
 
@@ -77,8 +55,6 @@ doublecmd:
     <docsUrl>http://doublecmd.sourceforge.net/forum/</docsUrl>
     <iconUrl>https://rawcdn.githack.com/marcinbojko/doublecmd/abe1fdc254972b06b049fdf6415d14b6db241bd1/icons/doublecmd.png</iconUrl>
     <projectSourceUrl>https://sourceforge.net/p/doublecmd/code/HEAD/tree/trunk/</projectSourceUrl>
-    <!--<projectSourceUrl></projectSourceUrl>
-    <mailingListUrl></mailingListUrl>-->
     <bugTrackerUrl>http://doublecmd.sourceforge.net/mantisbt/my_view_page.php</bugTrackerUrl>
     <tags>doublecmd double file manager commander admin</tags>
     <copyright>Double Commander</copyright>
