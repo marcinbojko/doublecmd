@@ -2,7 +2,7 @@
 
 ## Description
 
-Double Commander is a cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.
+Double Commander is a cross-platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.
 Double Commander can be run on several platforms and operating systems. It supports 32-bit and 64-bit processors. See Supported platforms for a complete list.
 See Double Commander in action in the Gallery.
 
@@ -13,10 +13,15 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+## 2022-09-20 Build 1.0.8
+
+* version 1.0.8
+* switch binary packages location from SourceForge to Github (no more hourly limits)
+
 ## 2022-06-05 Build 1.0.6
 
 * version 1.0.6
-* added more test for github actions (multiple Windows OS'es)
+* added more tests for Github actions (multiple Windows OS'es)
 
 ## 2022-04-10 Build 1.0.5
 

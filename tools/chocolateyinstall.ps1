@@ -1,11 +1,13 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $packageName        = 'doublecmd'
-$version            = '1.0.6'
-$url                = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2032%20bit/Double%20Commander%20$version%20beta/doublecmd-$version.i386-win32.msi/download?use_mirror=autoselect"
-$url64              = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2064%20bit/Double%20Commander%20$version%20beta/doublecmd-$version.x86_64-win64.msi/download?use_mirror=autoselect"
-$checksum           = "d057e0937294492048fa9228d7c34b544685181a5040c52e08ca3af400d827f9"
-$checksum64         = "83d28ea57bc6b6316462be560b32f4f71eb794eeeec4fdb351eeab204b7bf980"
+$version            = '1.0.8'
+#$url                = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2032%20bit/Double%20Commander%20$version%20beta/doublecmd-$version.i386-win32.msi/download?use_mirror=autoselect"
+$url                = "https://github.com/doublecmd/doublecmd/releases/download/v$version/doublecmd-$version.i386-win32.msi"
+#$url64              = "https://sourceforge.net/projects/doublecmd/files/DC%20for%20Windows%2064%20bit/Double%20Commander%20$version%20beta/doublecmd-$version.x86_64-win64.msi/download?use_mirror=autoselect"
+$url64              = "https://github.com/doublecmd/doublecmd/releases/download/v$version/doublecmd-$version.x86_64-win64.msi"
+$checksum           = "2119d508a4c550233def07977c4b3ade765044330fd379ba9fd60b20768cb5dc"
+$checksum64         = "37cfc8094f77f7d6bff4042a1b820f35695c9d3f648d16d7d4b081d63f362894"
 $killexec           = 1
 $killexecprocess    = "doublecmd*"
 
