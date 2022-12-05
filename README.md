@@ -13,6 +13,11 @@ See Double Commander in action in the Gallery.
 
 ## Changelog
 
+## 2022-12-05 Build 1.0.9
+
+* version 1.0.9
+* switch binary packages location from SourceForge to Github (no more hourly limits)
+
 ## 2022-09-20 Build 1.0.8
 
 * version 1.0.8
