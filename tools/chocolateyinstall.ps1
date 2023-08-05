@@ -1,11 +1,11 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $packageName        = 'doublecmd'
-$version            = '1.0.11'
+$version            = '1.1.0'
 $url                = "https://github.com/doublecmd/doublecmd/releases/download/v$version/doublecmd-$version.i386-win32.msi"
 $url64              = "https://github.com/doublecmd/doublecmd/releases/download/v$version/doublecmd-$version.x86_64-win64.msi"
-$checksum           = '1aff3e3e2002165aaa25f9a38bcf1131b1a27a5e41e5dafc73a325ff06f01958'
-$checksum64         = 'b7b2a72c9af04e0e586411234685a4f67741ab92d7089e7935e636b6097e6a83'
+$checksum           = 'ecf963910b4ca4f7d4aec310a90c9d328f2651fd54cf916f40e16ec5c1df11fc '
+$checksum64         = '84c5812640351275e22007152929bbff1575d7cdb4e74a90650774a095bc43e9'
 $killexec           = 1
 $killexecprocess    = "doublecmd*"
 
@@ -42,3 +42,4 @@ if ($killexec) {
 }
 Start-Sleep -s 3
 Install-ChocolateyPackage @packageArgs
+
