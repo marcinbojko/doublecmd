@@ -1,5 +1,9 @@
 # Double Commander
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/marcinbojko)
+
+Consider buying me a coffee if you like my work. All donations are appreciated. All donations will be used to pay for pipeline running costs
+
 ## Description
 
 Double Commander is a cross-platform open source file manager with two panels side by side. It is inspired by Total Commander and features some new ideas.
