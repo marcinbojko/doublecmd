@@ -19,8 +19,8 @@ See Double Commander in action in the Gallery.
 
 ## Features
 
-* Install and uninstall via Chocolatey
-* Supports 32/64-bit version
+- Install and uninstall via Chocolatey
+- Supports 32/64-bit version
 
 ## Usage
 
