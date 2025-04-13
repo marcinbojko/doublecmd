@@ -1,6 +1,47 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:base"
+  ],
+  "enabledManagers": ["chocolatey", "regex", "github-releases"],
+  "chocolatey": {
+    "enabled": true,
+    "fileMatch": ["(^|/)chocolateyinstall\\.ps1$", "(^|/)chocolateyupgrade\\.ps1$", "\\.nuspec$"]
+  },
+  "github-releases": {
+    "enabled": true
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["(^|/)chocolateyinstall\\.ps1$", "\\.nuspec$"],
+      "matchStrings": [
+        "(?<depName>doublecmd\\/doublecmd).*?(?<currentValue>[\\d\\.]+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["chocolatey"],
+      "automerge": false,
+      "commitMessageTopic": "Chocolatey package {{depName}}",
+      "labels": ["choco-update"]
+    },
+    {
+      "matchDatasources": ["github-releases"],
+      "matchPackagePatterns": ["doublecmd/doublecmd"],
+      "automerge": false,
+      "commitMessageTopic": "Double Commander {{newVersion}}",
+      "labels": ["source-update"],
+      "schedule": ["at any time"]
+    }
+  ],
+  "ignoreDeps": [],
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 10,
+  "branchPrefix": "renovate/",
+  "semanticCommits": "enabled",
+  "schedule": ["after 10pm and before 5am every weekday", "every weekend"],
+  "dependencyDashboard": true
 }
