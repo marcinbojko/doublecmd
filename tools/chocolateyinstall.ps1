@@ -1,11 +1,11 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $packageName        = 'doublecmd'
-$version            = '1.1.23'
+$version            = '1.1.24'
 $url                = "https://github.com/doublecmd/doublecmd/releases/download/v$version/doublecmd-$version.i386-win32.msi"
 $url64              = "https://github.com/doublecmd/doublecmd/releases/download/v$version/doublecmd-$version.x86_64-win64.msi"
-$checksum           = '09154bed0fc0c2aa6f8d242bd4818b951e1e56e5d68ccbe823f536d9aca76ab3 '
-$checksum64         = 'ef1641b3f10dd595f4b3b921fbbdd279fbaf9f780c24dc537910ac03486bedff'
+$checksum           = '95b989425dd5f949829c5fc0f45ae59c92eb4a09963a4033e15122795762bacb '
+$checksum64         = '76e46fd6a806b5ef09efc77f657a651b342f49ecf00a2cf9b59c84db9e1e10dd'
 $killexec           = 1
 $killexecprocess    = "doublecmd*"
 
