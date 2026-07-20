@@ -41,5 +41,19 @@ jobs:
 
       - name: Push test HEAD to master
         run: |
+          git fetch origin master
+          MASTER=$(git rev-parse origin/master)
+          HEAD_SHA=$(git rev-parse HEAD)
+
+          if git merge-base --is-ancestor "${HEAD_SHA}" "${MASTER}"; then
+            echo "master already contains this commit — nothing to promote."
+            exit 0
+          fi
+
+          if ! git merge-base --is-ancestor "${MASTER}" "${HEAD_SHA}"; then
+            echo "ERROR: master has diverged from the built commit — refusing to promote. Reconcile test and master manually."
+            exit 1
+          fi
+
           git push origin HEAD:master
           echo "Promoted test → master; build_package.yml will publish to Chocolatey."
