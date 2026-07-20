@@ -1,0 +1,43 @@
+---
+# Promotes a successful test-branch build to master, which triggers
+# build_package.yml to publish the package to Chocolatey.
+#
+# Triggered automatically when "Build and Push Chocolatey Package" completes
+# successfully on the test branch.
+#
+# REQUIRED SECRET: GH_PAT — Personal Access Token with 'repo' scope.
+# GITHUB_TOKEN cannot trigger downstream workflows on push.
+
+name: Promote to Production
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Chocolatey Package"]
+    types: [completed]
+    branches: [test]
+
+concurrency:
+  group: doublecmd-promote-to-prod
+  cancel-in-progress: false # never cancel a promotion mid-flight
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    name: Merge test into master
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: test
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Push test HEAD to master
+        run: |
+          git push origin HEAD:master
+          echo "Promoted test → master; build_package.yml will publish to Chocolatey."

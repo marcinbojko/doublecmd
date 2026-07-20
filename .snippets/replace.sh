@@ -112,9 +112,15 @@ echo -e "${GREEN}Updating $POWERSHELL_FILE...${NC}"
 echo "✓ Updated $POWERSHELL_FILE"
 
 # Check if tag already exists
-if git rev-parse --quiet --verify "$version" >/dev/null 2>&1; then
-	echo "Tag already exists: $version"
-	exit 0
+if git rev-parse --quiet --verify "refs/tags/$version" >/dev/null 2>&1; then
+	if [[ "${FORCE_BUILD:-false}" == "true" ]]; then
+		echo -e "${GREEN}Force build: recreating tag $version...${NC}"
+		git tag -d "$version" || error_exit "Failed to delete local tag"
+		git push origin --delete "refs/tags/$version" 2>/dev/null || true
+	else
+		echo "Tag already exists: $version"
+		exit 0
+	fi
 fi
 
 # Validate git author before committing (prevent GitKraken profile issues)
@@ -123,18 +129,27 @@ CURRENT_EMAIL=$(git config user.email)
 CURRENT_NAME=$(git config user.name)
 [[ -n "$CURRENT_EMAIL" && -n "$CURRENT_NAME" ]] || error_exit "Git author not configured! Please set user.name and user.email"
 
-# Hash-based validation using configured expected hash
-CURRENT_HASH=$(echo -n "$CURRENT_EMAIL" | sha256sum | cut -d' ' -f1)
-if [[ "$CURRENT_HASH" != "$EXPECTED_EMAIL_HASH" ]]; then
-	error_exit "Incorrect git author configuration!\nCurrent author: $CURRENT_NAME <$CURRENT_EMAIL>\nThis may be caused by GitKraken profile switching."
+if [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
+	echo -e "${GREEN}Running in GitHub Actions — skipping author email hash validation${NC}"
+else
+	# Hash-based validation using configured expected hash
+	CURRENT_HASH=$(echo -n "$CURRENT_EMAIL" | sha256sum | cut -d' ' -f1)
+	if [[ "$CURRENT_HASH" != "$EXPECTED_EMAIL_HASH" ]]; then
+		error_exit "Incorrect git author configuration!\nCurrent author: $CURRENT_NAME <$CURRENT_EMAIL>\nThis may be caused by GitKraken profile switching."
+	fi
+	echo -e "${GREEN}✓ Git author validated: $CURRENT_NAME <$CURRENT_EMAIL>${NC}"
 fi
-
-echo -e "${GREEN}✓ Git author validated: $CURRENT_NAME <$CURRENT_EMAIL>${NC}"
 
 # Create the commit and tag
 echo -e "${GREEN}Creating commit and tag...${NC}"
 git add -A || error_exit "Failed to add changes"
-git commit -m "Version ${version}" || error_exit "Failed to create commit"
+if ! git commit -m "Version ${version}"; then
+	if [[ "${FORCE_BUILD:-false}" == "true" ]]; then
+		echo "No changes to commit (force build) — continuing with tag only"
+	else
+		error_exit "Failed to create commit"
+	fi
+fi
 git tag "$version" || error_exit "Failed to create tag"
 
 echo -e "${GREEN}✓ Successfully created commit and tag: $version${NC}"
