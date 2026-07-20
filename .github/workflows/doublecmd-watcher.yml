@@ -1,0 +1,171 @@
+---
+# Watches for new Double Commander releases and packages them ONE AT A TIME,
+# oldest first, so no upstream version is skipped (e.g. 1.2.0-1.2.6 get
+# published before 1.2.7).
+#
+# Upstream prereleases are packaged on purpose: doublecmd marks every x.y
+# series "beta" until it matures (1.1.0-1.1.11 and 1.2.0-1.2.6 are all
+# prereleases upstream) and this package has always shipped them. Only
+# drafts are skipped.
+#
+# On a new version: bumps doublecmd.nuspec version, then delegates to
+# .snippets/replace.sh which verifies assets, updates chocolateyinstall.ps1,
+# commits, and tags. The push step triggers build_package.yml; a successful
+# test build is promoted to master by promote.yml, which publishes to
+# Chocolatey. The watcher waits until test and master are level again before
+# starting the next version.
+#
+# REQUIRED SECRET: GH_PAT — Personal Access Token with 'repo' scope.
+# GITHUB_TOKEN cannot trigger downstream workflows on push.
+
+name: Doublecmd Release Watcher
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # every 12 hours — Chocolatey moderation approval takes a while anyway
+  workflow_dispatch: # checkov:skip=CKV_GHA_7:force_build is an intentional manual override
+    inputs:
+      version:
+        description: "Package this exact upstream version (e.g. 1.2.0) instead of auto-detecting the next one"
+        required: false
+        default: ""
+        type: string
+      force_build:
+        description: "Rebuild even if this version is already tagged (recreates the tag; also bypasses the test/master sync guard)"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: doublecmd-release-watcher
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  check-and-update:
+    name: Check for new doublecmd release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: test
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Detect next version to package
+        id: detect
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE_BUILD: ${{ inputs.force_build }}
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          VERSION_RE='^[0-9]+(\.[0-9]+){1,3}$'
+
+          # Don't start a new version while the previous one is still being
+          # built or promoted — otherwise master could jump straight to the
+          # newer version and skip publishing the one in flight.
+          if [ "$(git rev-parse origin/test)" != "$(git rev-parse origin/master)" ] && [ "${FORCE_BUILD}" != "true" ]; then
+            echo "test and master differ — previous promotion still in flight (or failed); skipping this run."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Manual override: package exactly the requested version
+          if [ -n "${REQUESTED_VERSION}" ]; then
+            VERSION="${REQUESTED_VERSION#v}"
+            if ! echo "${VERSION}" | grep -Eq "${VERSION_RE}"; then
+              echo "Invalid version requested: ${VERSION}"
+              exit 1
+            fi
+            if git rev-parse --quiet --verify "refs/tags/${VERSION}" >/dev/null 2>&1 && [ "${FORCE_BUILD}" != "true" ]; then
+              echo "Tag ${VERSION} already exists (use force_build to rebuild)."
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Requested version: ${VERSION}"
+            echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # All non-draft upstream releases, including prereleases (see header)
+          VERSIONS=$(curl -sf \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/doublecmd/doublecmd/releases?per_page=100" |
+            jq -r '.[] | select(.draft == false) | .tag_name | ltrimstr("v")' | sort -V)
+          if [ -z "${VERSIONS}" ]; then
+            echo "Failed to list upstream releases."
+            exit 1
+          fi
+
+          # Baseline: highest version already shipped. The nuspec version is
+          # included because a shipped version may lack a tag (1.1.32 is on
+          # Chocolatey but was never tagged).
+          HIGHEST_TAG=$(git tag --list | sort -V | tail -1)
+          NUSPEC_VERSION=$(grep -oPm1 "(?<=<version>)[^<]+" doublecmd.nuspec)
+          BASELINE=$(printf '%s\n%s\n' "${HIGHEST_TAG}" "${NUSPEC_VERSION}" | sort -V | tail -1)
+          echo "Baseline (highest shipped version): ${BASELINE}"
+
+          # Oldest upstream version above the baseline that is not tagged yet
+          VERSION=""
+          for v in ${VERSIONS}; do
+            [ "$(printf '%s\n%s\n' "${BASELINE}" "${v}" | sort -V | tail -1)" = "${v}" ] || continue
+            [ "${v}" != "${BASELINE}" ] || continue
+            if ! git rev-parse --quiet --verify "refs/tags/${v}" >/dev/null 2>&1; then
+              VERSION="${v}"
+              break
+            fi
+          done
+
+          if [ -z "${VERSION}" ]; then
+            echo "No new upstream version above ${BASELINE}, nothing to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if ! echo "${VERSION}" | grep -Eq "${VERSION_RE}"; then
+            echo "Upstream version has unexpected format: ${VERSION}"
+            exit 1
+          fi
+
+          echo "Next version to package: ${VERSION}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Bump version in doublecmd.nuspec
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          VERSION: ${{ steps.detect.outputs.version }}
+        run: |
+          if ! echo "${VERSION}" | grep -Eq '^[0-9]+(\.[0-9]+){1,3}$'; then
+            echo "Invalid version: ${VERSION}"
+            exit 1
+          fi
+          sed -i "s|<version>[^<]*</version>|<version>${VERSION}</version>|" doublecmd.nuspec
+
+      - name: Run replace.sh — verify assets, update ps1, commit and tag
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          FORCE_BUILD: ${{ inputs.force_build }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cd .snippets
+          bash replace.sh
+
+      - name: Push commit and tag
+        if: steps.detect.outputs.skip != 'true'
+        run: |
+          VERSION="${{ steps.detect.outputs.version }}"
+          FORCE_BUILD="${{ inputs.force_build }}"
+          if [ "${FORCE_BUILD}" = "true" ]; then
+            git push origin HEAD:test "+refs/tags/${VERSION}:refs/tags/${VERSION}"
+          else
+            git push origin HEAD:test "refs/tags/${VERSION}"
+          fi
+          echo "Pushed commit and tag ${VERSION} — build_package.yml will handle the rest."

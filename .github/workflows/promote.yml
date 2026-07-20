@@ -1,0 +1,59 @@
+---
+# Promotes a successful test-branch build to master, which triggers
+# build_package.yml to publish the package to Chocolatey.
+#
+# Triggered automatically when "Build and Push Chocolatey Package" completes
+# successfully on the test branch.
+#
+# REQUIRED SECRET: GH_PAT — Personal Access Token with 'repo' scope.
+# GITHUB_TOKEN cannot trigger downstream workflows on push.
+
+name: Promote to Production
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Chocolatey Package"]
+    types: [completed]
+    branches: [test]
+
+concurrency:
+  group: doublecmd-promote-to-prod
+  cancel-in-progress: false # never cancel a promotion mid-flight
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    name: Merge test into master
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the commit that passed the test build
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          # The exact commit the successful build ran on — not the moving test
+          # ref, which may have advanced past what was actually built.
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Push test HEAD to master
+        run: |
+          git fetch origin master
+          MASTER=$(git rev-parse origin/master)
+          HEAD_SHA=$(git rev-parse HEAD)
+
+          if git merge-base --is-ancestor "${HEAD_SHA}" "${MASTER}"; then
+            echo "master already contains this commit — nothing to promote."
+            exit 0
+          fi
+
+          if ! git merge-base --is-ancestor "${MASTER}" "${HEAD_SHA}"; then
+            echo "ERROR: master has diverged from the built commit — refusing to promote. Reconcile test and master manually."
+            exit 1
+          fi
+
+          git push origin HEAD:master
+          echo "Promoted test → master; build_package.yml will publish to Chocolatey."
