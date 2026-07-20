@@ -143,12 +143,14 @@ fi
 # Create the commit and tag
 echo -e "${GREEN}Creating commit and tag...${NC}"
 git add -A || error_exit "Failed to add changes"
-if ! git commit -m "Version ${version}"; then
+if git diff --cached --quiet; then
 	if [[ "${FORCE_BUILD:-false}" == "true" ]]; then
 		echo "No changes to commit (force build) — continuing with tag only"
 	else
-		error_exit "Failed to create commit"
+		error_exit "No changes to commit"
 	fi
+else
+	git commit -m "Version ${version}" || error_exit "Failed to create commit"
 fi
 git tag "$version" || error_exit "Failed to create tag"
 

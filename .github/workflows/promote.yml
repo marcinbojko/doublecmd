@@ -30,10 +30,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout test branch
+      - name: Checkout the commit that passed the test build
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
-          ref: test
+          # The exact commit the successful build ran on — not the moving test
+          # ref, which may have advanced past what was actually built.
+          ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
 
