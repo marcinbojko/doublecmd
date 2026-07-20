@@ -37,10 +37,3 @@ doublecmd:
   ensure: latest
   provider: chocolatey
 ```
-
-or
-
-```yaml
-doublecmd:
-  ensure: latest
-```
